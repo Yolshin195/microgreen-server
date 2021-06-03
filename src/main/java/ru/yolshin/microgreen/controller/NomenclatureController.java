@@ -18,6 +18,11 @@ public class NomenclatureController {
         return nomenclatureRepository.findAll();
     }
 
+    @GetMapping("find")
+    public Iterable<Nomenclature> findAllByTitleContaining(@RequestParam String title) {
+        return nomenclatureRepository.findAllByTitleContaining(title);
+    }
+
     @PostMapping
     public void save(@RequestBody Nomenclature nomenclature) {
         nomenclatureRepository.save(nomenclature);
