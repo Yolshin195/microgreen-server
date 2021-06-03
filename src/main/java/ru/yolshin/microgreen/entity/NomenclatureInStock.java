@@ -12,6 +12,8 @@ public class NomenclatureInStock {
     private int available;
     private Date create;
     @ManyToOne
+    private Price price;
+    @ManyToOne
     private Nomenclature nomenclature;
 
     public long getId() {

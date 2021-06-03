@@ -13,7 +13,7 @@ public class Product {
     private int count;
     private BigDecimal price;
     @ManyToOne
-    private Nomenclature nomenclature;
+    private NomenclatureInStock nomenclature;
     @JsonIgnore
     @ManyToOne
     private Order order;
