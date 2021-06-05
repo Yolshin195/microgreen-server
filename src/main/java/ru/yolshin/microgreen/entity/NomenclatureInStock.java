@@ -48,6 +48,14 @@ public class NomenclatureInStock {
         this.create = create;
     }
 
+    public Price getPrice() {
+        return price;
+    }
+
+    public void setPrice(Price price) {
+        this.price = price;
+    }
+
     public Nomenclature getNomenclature() {
         return nomenclature;
     }

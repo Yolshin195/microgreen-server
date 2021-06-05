@@ -23,9 +23,14 @@ public class PriceController {
         return priceRepository.findAll();
     }
 
+    @GetMapping("find/nomenclature")
+    public Iterable<Price> findAllByNomenclatureIdOrderByCreateDesc(@RequestParam long id) {
+        return priceRepository.findAllByNomenclatureIdOrderByCreateDesc(id);
+    }
+
     @GetMapping("current")
-    public Price findFirsByNomenclatureOrderByCreateDesc(@RequestParam long id) {
-        return priceRepository.findFirsByNomenclatureIdOrderByCreateDesc(id);
+    public Price findFirstByNomenclatureIdOrderByCreateDesc(@RequestParam long id) {
+        return priceRepository.findFirstByNomenclatureIdOrderByCreateDesc(id);
     }
 
     @PostMapping

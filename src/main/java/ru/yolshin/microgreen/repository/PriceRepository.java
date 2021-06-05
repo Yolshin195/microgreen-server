@@ -5,5 +5,6 @@ import ru.yolshin.microgreen.entity.Nomenclature;
 import ru.yolshin.microgreen.entity.Price;
 
 public interface PriceRepository extends CrudRepository<Price, Long> {
-    Price findFirsByNomenclatureIdOrderByCreateDesc(long nomenclatureId);
+    Price findFirstByNomenclatureIdOrderByCreateDesc(long nomenclatureId);
+    Iterable<Price> findAllByNomenclatureIdOrderByCreateDesc(long nomenclatureId);
 }
