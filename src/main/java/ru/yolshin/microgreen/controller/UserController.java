@@ -1,26 +1,52 @@
 package ru.yolshin.microgreen.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+import ru.yolshin.microgreen.dto.RegisterUserDTO;
 import ru.yolshin.microgreen.entity.User;
 import ru.yolshin.microgreen.repository.UserRepository;
 
-public class UserController {
-    private UserRepository userRepository;
+import java.util.Date;
 
-    public UserController(UserRepository userRepository) {
+@RestController
+@RequestMapping("user")
+public class UserController {
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    private UserRepository userRepository;
+    //private PasswordEncoder passwordEncoder;
+
+    public UserController(UserRepository userRepository /*, PasswordEncoder passwordEncoder*/) {
         this.userRepository = userRepository;
+        //this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
-    User findById(@RequestParam long id) {
-        return this.userRepository.findById(id).orElseThrow();
+    Iterable<User> findAll() {
+        return userRepository.findAll();
     }
 
-    @PostMapping
-    User save(@RequestBody User user) {
-        return this.userRepository.save(user);
+    @PostMapping("register")
+    User register(@RequestBody RegisterUserDTO userDTO) throws Exception {
+        logger.info(userDTO.toString());
+        if (!userDTO.getPassword().equals(userDTO.getRepeatPassword())) {
+            throw new Exception("Пароль не совпадает");
+        }
+        if (userRepository.existsByPhone(userDTO.getPhone())) {
+            throw new Exception("Пользователь уже существует");
+        }
+
+        User user = new User();
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
+        user.setPhone(userDTO.getPhone());
+        //user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setPassword(userDTO.getPassword());
+        user.setDate(new Date());
+
+        logger.info(user.toString());
+
+        return userRepository.save(user);
     }
 }

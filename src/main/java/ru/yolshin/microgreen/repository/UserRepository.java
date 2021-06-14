@@ -6,6 +6,7 @@ import ru.yolshin.microgreen.entity.User;
 import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Long> {
+    boolean existsByPhone(String phone);
     Optional<User> findByPhone(String phone);
     Optional<User> findByUsername(String username);
 }

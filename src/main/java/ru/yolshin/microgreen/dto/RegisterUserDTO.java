@@ -1,33 +1,14 @@
-package ru.yolshin.microgreen.entity;
+package ru.yolshin.microgreen.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 
-import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
-
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class RegisterUserDTO implements Serializable {
     private String email;
     private String phone;
-    private Date date;
-
-    @OneToMany
-    private Set<Role> roles;
     private String username;
-    @JsonIgnore
     private String password;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    private String repeatPassword;
+    private boolean agree;
 
     public String getEmail() {
         return email;
@@ -43,14 +24,6 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
     public String getUsername() {
@@ -69,24 +42,31 @@ public class User {
         this.password = password;
     }
 
-    public Date getDate() {
-        return date;
+    public String getRepeatPassword() {
+        return repeatPassword;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
+    }
+
+    public boolean isAgree() {
+        return agree;
+    }
+
+    public void setAgree(boolean agree) {
+        this.agree = agree;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
+        return "RegisterUserDTO{" +
+                "email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", date=" + date +
-                ", roles=" + roles +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", repeatPassword='" + repeatPassword + '\'' +
+                ", agree=" + agree +
                 '}';
     }
 }
