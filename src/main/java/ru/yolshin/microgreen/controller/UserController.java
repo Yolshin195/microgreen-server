@@ -2,7 +2,6 @@ package ru.yolshin.microgreen.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.yolshin.microgreen.dto.RegisterUserDTO;
 import ru.yolshin.microgreen.entity.User;
@@ -15,11 +14,9 @@ import java.util.Date;
 public class UserController {
     private Logger logger = LoggerFactory.getLogger(UserController.class);
     private UserRepository userRepository;
-    //private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userRepository /*, PasswordEncoder passwordEncoder*/) {
+    public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
-        //this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -41,9 +38,9 @@ public class UserController {
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
         user.setPhone(userDTO.getPhone());
-        //user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        user.setPassword(userDTO.getPassword());
+        user.setPassword("{noop}" + userDTO.getPassword());
         user.setDate(new Date());
+        user.setRoles(new String[]{"USER"});
 
         logger.info(user.toString());
 
