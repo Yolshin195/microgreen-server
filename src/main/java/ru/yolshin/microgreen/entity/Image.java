@@ -2,8 +2,8 @@ package ru.yolshin.microgreen.entity;
 
 import javax.persistence.*;
 
-@Entity(name = "image")
-@Table(name = "image")
+@Entity(name = "microgreen_image")
+@Table(name = "microgreen_image")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

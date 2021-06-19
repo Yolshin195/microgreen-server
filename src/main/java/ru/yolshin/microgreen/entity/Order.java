@@ -4,12 +4,15 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-@Entity(name = "order_")
+@Entity(name = "microgreen_order")
+@Table(name = "microgreen_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column(name = "date_create")
     private Date create;
+    @Column(name = "date_end")
     private Date end;
     @ManyToOne
     private OrderStatus status;

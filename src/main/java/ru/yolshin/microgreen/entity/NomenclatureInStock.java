@@ -3,13 +3,15 @@ package ru.yolshin.microgreen.entity;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Entity(name = "microgreen_nomenclature_in_stock")
+@Table(name = "microgreen_nomenclature_in_stock")
 public class NomenclatureInStock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private int count;
     private int available;
+    @Column(name = "date_create")
     private Date create;
     @ManyToOne
     private Price price;

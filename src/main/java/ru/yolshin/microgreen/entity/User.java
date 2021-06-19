@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Set;
 
-@Entity
+@Entity(name = "microgreen_user")
+@Table(name = "microgreen_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

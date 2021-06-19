@@ -2,13 +2,14 @@ package ru.yolshin.microgreen.entity;
 
 import javax.persistence.*;
 
-@Entity(name = "nomenclature")
-@Table(name = "nomenclature")
+@Entity(name = "microgreen_nomenclature")
+@Table(name = "microgreen_nomenclature")
 public class Nomenclature {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
+    @Column(columnDefinition = "text")
     private String description;
     @ManyToOne
     private Image image;

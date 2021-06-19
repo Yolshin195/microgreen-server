@@ -1,14 +1,11 @@
 package ru.yolshin.microgreen.entity;
 
-import org.springframework.security.authentication.jaas.AuthorityGranter;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "microgreen_role")
+@Table(name = "microgreen_role")
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

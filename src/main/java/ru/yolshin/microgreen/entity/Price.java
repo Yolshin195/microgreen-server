@@ -4,12 +4,14 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
+@Entity(name = "microgreen_price")
+@Table(name = "microgreen_price")
 public class Price {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private BigDecimal price;
+    @Column(name = "date_create")
     private Date create;
     @ManyToOne
     private Nomenclature nomenclature;

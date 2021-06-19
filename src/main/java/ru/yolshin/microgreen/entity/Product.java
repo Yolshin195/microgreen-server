@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
+@Entity(name = "microgreen_product")
+@Table(name = "microgreen_product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
