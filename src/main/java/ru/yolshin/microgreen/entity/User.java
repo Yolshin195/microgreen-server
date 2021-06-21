@@ -3,7 +3,6 @@ package ru.yolshin.microgreen.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,9 +17,9 @@ public class User {
     private String phone;
     private Date date;
 
-    //@OneToMany
-    //private Set<Role> roles;
-    private String[] roles;
+    @ManyToMany
+    private Set<Role> roles;
+    //private String[] roles;
     @JsonIgnore
     private String password;
 
@@ -48,14 +47,6 @@ public class User {
         this.phone = phone;
     }
 
-    public String[] getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String[] roles) {
-        this.roles = roles;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -80,15 +71,23 @@ public class User {
         this.date = date;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", date=" + date +
-                ", roles=" + Arrays.toString(roles) +
-                ", username='" + username + '\'' +
+                ", roles=" + roles.toString() +
                 ", password='" + password + '\'' +
                 '}';
     }

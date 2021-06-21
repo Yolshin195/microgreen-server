@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -25,8 +26,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.inMemoryAuthentication().withUser("user").password(passwordEncoder().encode("user")).roles("USER");
-        //auth.inMemoryAuthentication().withUser("user").password("{noop}user").roles("USER");
         auth.userDetailsService(this.userDetailsService);//.passwordEncoder(passwordEncoder());
     }
 
@@ -35,9 +34,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/image/**", "/nomenclature", "/nomenclature-in-stock", "/user/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/register", "/order/register").permitAll()
                 .anyRequest().authenticated()
-                .and().httpBasic();
+                .and()
+                    .logout()
+                    .logoutUrl("/logout")//I add '/api' to every request by setting this option in spring properties
+                    .deleteCookies("JSESSIONID")
+                    .invalidateHttpSession(true)
+                    .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
+                    .permitAll()
+                .and()
+                    .httpBasic();
     }
 }

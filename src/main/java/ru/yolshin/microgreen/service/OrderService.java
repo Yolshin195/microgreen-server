@@ -13,14 +13,14 @@ import java.util.Set;
 
 @Service
 public class OrderService {
-    private UserRepository userRepository;
+    private MicrogreenUserService microgreenUserService;
     private OrderRepository orderRepository;
     private OrderStatusRepository orderStatusRepository;
     private ProductRepository productRepository;
     private NomenclatureInStockRepository nomenclatureInStockRepository;
 
-    public OrderService(OrderRepository orderRepository, OrderStatusRepository orderStatusRepository, UserRepository userRepository, ProductRepository productRepository, NomenclatureInStockRepository nomenclatureInStockRepository) {
-        this.userRepository = userRepository;
+    public OrderService(OrderRepository orderRepository, OrderStatusRepository orderStatusRepository, MicrogreenUserService microgreenUserService, ProductRepository productRepository, NomenclatureInStockRepository nomenclatureInStockRepository) {
+        this.microgreenUserService = microgreenUserService;
         this.orderRepository = orderRepository;
         this.orderStatusRepository = orderStatusRepository;
         this.productRepository = productRepository;
@@ -29,7 +29,7 @@ public class OrderService {
     }
 
     public Order save(Order order) {
-        User user = createUserIsNotExist(order.getUser().getUsername(), order.getUser().getPhone());
+        User user = microgreenUserService.createUserIsNotExist(order.getUser().getUsername(), order.getUser().getPhone());
         OrderStatus orderStatus = createOrderStatusIsNotExist("CREATED");
 
         order.setUser(user);
@@ -63,21 +63,7 @@ public class OrderService {
         return orderStatus.get();
     }
 
-    private User createUserIsNotExist(String username, String phone) {
-        Optional<User> user = userRepository.findByPhone(phone);
 
-        if (user.isEmpty()) {
-            User newUser = new User();
-            newUser.setDate(new Date());
-            newUser.setUsername(username);
-            newUser.setPhone(phone);
-            newUser.setRoles(new String[]{"ANONYMOUS"});
-
-            return userRepository.save(newUser);
-        }
-
-        return user.get();
-    }
 
     private <T> Set<T> toSet(Iterable<T> collection) {
         HashSet<T> set = new HashSet<T>();
