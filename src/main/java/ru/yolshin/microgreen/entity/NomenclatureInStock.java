@@ -5,10 +5,7 @@ import java.util.Date;
 
 @Entity(name = "microgreen_nomenclature_in_stock")
 @Table(name = "microgreen_nomenclature_in_stock")
-public class NomenclatureInStock {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class NomenclatureInStock extends BaseEntity {
     private int count;
     private int available;
     @Column(name = "date_create")
@@ -17,14 +14,6 @@ public class NomenclatureInStock {
     private Price price;
     @ManyToOne
     private Nomenclature nomenclature;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public int getCount() {
         return count;

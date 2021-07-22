@@ -6,10 +6,7 @@ import java.util.Set;
 
 @Entity(name = "microgreen_order")
 @Table(name = "microgreen_order")
-public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class Order extends SuperReference {
     @Column(name = "date_create")
     private Date create;
     @Column(name = "date_end")
@@ -20,14 +17,6 @@ public class Order {
     private User user;
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private Set<Product> products;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public Date getCreate() {
         return create;

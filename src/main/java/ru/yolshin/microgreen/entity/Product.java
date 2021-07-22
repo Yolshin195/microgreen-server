@@ -7,10 +7,7 @@ import java.math.BigDecimal;
 
 @Entity(name = "microgreen_product")
 @Table(name = "microgreen_product")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class Product extends BaseEntity {
     private int count;
     private BigDecimal price;
     @ManyToOne
@@ -18,14 +15,6 @@ public class Product {
     @JsonIgnore
     @ManyToOne
     private Order order;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public int getCount() {
         return count;

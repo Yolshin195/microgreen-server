@@ -6,23 +6,14 @@ import java.util.Date;
 
 @Entity(name = "microgreen_price")
 @Table(name = "microgreen_price")
-public class Price {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class Price extends BaseEntity {
     private BigDecimal price;
     @Column(name = "date_create")
     private Date create;
     @ManyToOne
     private Nomenclature nomenclature;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    @ManyToOne
+    private Counterparty counterparty;
 
     public BigDecimal getPrice() {
         return price;

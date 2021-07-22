@@ -4,20 +4,9 @@ import javax.persistence.*;
 
 @Entity(name = "microgreen_image")
 @Table(name = "microgreen_image")
-public class Image {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class Image extends BaseEntity {
     private String fileName;
     private String originFileName;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getFileName() {
         return fileName;

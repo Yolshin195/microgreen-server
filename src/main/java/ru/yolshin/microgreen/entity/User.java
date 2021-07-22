@@ -8,10 +8,7 @@ import java.util.Set;
 
 @Entity(name = "microgreen_user")
 @Table(name = "microgreen_user")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class User extends BaseEntity {
     private String username;
     private String email;
     private String phone;
@@ -22,14 +19,6 @@ public class User {
     //private String[] roles;
     @JsonIgnore
     private String password;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;
