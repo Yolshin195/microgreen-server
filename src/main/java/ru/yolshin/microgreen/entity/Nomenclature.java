@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity(name = "microgreen_nomenclature")
 @Table(name = "microgreen_nomenclature")
-public class Nomenclature extends SuperReference {
+public class Nomenclature extends TreeReference<Nomenclature> {
     @ManyToOne
     private Image image;
 
