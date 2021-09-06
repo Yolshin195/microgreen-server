@@ -1,0 +1,17 @@
+[Unit]
+Description=server for website ygreens.ru
+After=syslog.target
+
+[Service]
+Environment="db_host="
+Environment="db_username="
+Environment="db_password="
+Environment="JAVA_HOME="
+User=ygreensru
+ExecStart=$JAVA_HOME/bin/java -jar /opt/microgreen.jar --server.port=1234 --upload.path=/var/ygreens.image
+SuccessExitStatus=143
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
