@@ -6,8 +6,9 @@ pipeline {
             environment {
                 JAVA_HOME   = '/usr/java/openjdk/jdk-16.0.2/'
                 db_host     = 'localhost'
-                db_username = credentials('ygreens_postgres_USR')
-                db_password = credentials('ygreens_postgres_PSW')
+                ygreens_postgres = credentials('ygreens_postgres')
+                db_username = ${ygreens_postgres_USR}
+                db_password = ${ygreens_postgres_PSW}
             }
             steps {
                 sh './mvnw package'
