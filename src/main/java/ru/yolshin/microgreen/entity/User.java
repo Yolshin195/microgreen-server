@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity(name = "microgreen_user")
 @Table(name = "microgreen_user")
-public class User extends BaseEntity {
+public class User extends AbstractEntity {
     private String username;
     private String email;
     private String phone;

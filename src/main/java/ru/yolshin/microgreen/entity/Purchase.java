@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity(name = "microgreen_purchase")
 @Table(name = "microgreen_purchase")
-public class Purchase extends BaseEntity {
+public class Purchase extends AbstractEntity {
     @Column(name = "date_create")
     private Date create;
     @ManyToOne

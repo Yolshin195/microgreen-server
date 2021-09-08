@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Entity(name = "microgreen_product")
 @Table(name = "microgreen_product")
-public class Product extends BaseEntity {
+public class Product extends AbstractEntity {
     private int count;
     private BigDecimal price;
     @ManyToOne

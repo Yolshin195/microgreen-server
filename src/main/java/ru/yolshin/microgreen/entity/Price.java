@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity(name = "microgreen_price")
 @Table(name = "microgreen_price")
-public class Price extends BaseEntity {
+public class Price extends AbstractEntity {
     private BigDecimal price;
     @Column(name = "date_create")
     private Date create;

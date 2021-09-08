@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity(name = "microgreen_image")
 @Table(name = "microgreen_image")
-public class Image extends BaseEntity {
+public class Image extends AbstractEntity {
     private String fileName;
     private String originFileName;
 

@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity(name = "microgreen_document_to_plant")
 @Table(name = "microgreen_document_to_plant")
-public class DocumentToPlant extends BaseEntity {
+public class DocumentToPlant extends AbstractEntity {
     @ManyToOne
     Nomenclature substrate;
     @ManyToOne

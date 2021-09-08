@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class SuperReference extends AbstractEntity {
+public abstract class AbstractReference extends AbstractEntity {
     protected String title;
     @Column(columnDefinition = "text")
     protected String description;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity(name = "microgreen_order_status")
 @Table(name = "microgreen_order_status")
-public class OrderStatus extends BaseEntity {
+public class OrderStatus extends AbstractEntity {
     private String title;
     private String value;
 

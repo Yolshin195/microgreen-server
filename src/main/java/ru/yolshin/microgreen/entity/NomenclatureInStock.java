@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity(name = "microgreen_nomenclature_in_stock")
 @Table(name = "microgreen_nomenclature_in_stock")
-public class NomenclatureInStock extends BaseEntity {
+public class NomenclatureInStock extends AbstractEntity {
     private int count;
     private int available;
     @Column(name = "date_create")
